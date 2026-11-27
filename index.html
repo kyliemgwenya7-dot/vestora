@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0B0F14"><meta name="mobile-web-app-capable" content="yes"><link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" href="icon-192.png">
+<title>Vestora — Your future, quantified.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#F5F7FA;--bg2:#fff;--card:#fff;--bd:#E4E9EF;--tx:#18212B;--tx2:#647181;--ac:#149B69;--acx:#fff;--warn:#C58B26;--err:#D94D4D;--c2:#4C7FE0;--c3:#8A5CD6;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B0F14;--bg2:#111820;--card:#161F29;--bd:#283542;--tx:#F4F7FA;--tx2:#9BA8B6;--ac:#36C98A;--acx:#0B0F14;--warn:#E8B65B;--err:#EF6262;--c2:#78A9FF;--c3:#C59AFF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B0F14;--bg2:#111820;--card:#161F29;--bd:#283542;--tx:#F4F7FA;--tx2:#9BA8B6;--ac:#36C98A;--acx:#0B0F14;--warn:#E8B65B;--err:#EF6262;--c2:#78A9FF;--c3:#C59AFF;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums}
+h1{font-size:28px;margin:8px 0 12px;letter-spacing:-.4px}h2{font-size:20px;margin:0 0 8px}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--bg2);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav button{flex:1;background:none;border:0;color:var(--tx2);padding:8px 2px;font:inherit;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:54px;cursor:pointer}
+nav button.on{color:var(--ac);font-weight:600}nav svg{width:22px;height:22px}.logo{display:none;font-size:22px;padding:4px 12px 20px}
+main{max-width:1100px;margin:0 auto;padding:16px 16px 110px}
+@media(min-width:900px){nav{top:0;right:auto;width:220px;flex-direction:column;border-top:0;border-right:1px solid var(--bd);padding:24px 12px;gap:4px}nav button{flex:0 0 auto;flex-direction:row;font-size:15px;gap:10px;padding:12px;justify-content:flex-start;border-radius:10px;min-height:44px}nav button.on{background:var(--card)}.logo{display:block}main{margin:0 0 0 220px;padding:32px 40px}.two{grid-template-columns:340px 1fr!important}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:12px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:12px}.grid .card{margin:0}
+.two{display:grid;gap:12px;grid-template-columns:1fr}
+.big{font-size:34px;font-weight:700;letter-spacing:-.5px}.mut{color:var(--tx2);font-size:13px}.err{color:var(--err);font-size:13px}.warn{color:var(--warn);font-size:13px}
+.btn{min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;font-weight:600;cursor:pointer}
+.btn.p{background:var(--ac);color:var(--acx);border-color:var(--ac)}.btn.d{color:var(--err)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,nav button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.sp{justify-content:space-between}
+label{display:block;font-size:13px;color:var(--tx2);margin:12px 0 4px}
+input,select{width:100%;min-height:44px;padding:0 12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:inherit;font-size:16px}
+input[type=range]{padding:0;border:0;background:none}
+.bar{height:8px;background:var(--bd);border-radius:9px;overflow:hidden;display:flex;margin:8px 0}.bar i{display:block;height:100%;background:var(--ac)}
+.chart{width:100%;height:auto;touch-action:pan-y}
+.line{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--bd)}.line:first-child{border-top:0}
+#toast{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:var(--ac);color:var(--acx);padding:10px 16px;border-radius:12px;font-weight:600;opacity:0;transition:opacity .2s;z-index:9;pointer-events:none}
+@media(prefers-reduced-motion:reduce){#toast{transition:none}}
+body.bare nav{display:none}body.bare main{margin:0 auto!important;padding:16px 16px 40px}.hero{padding:28px 0 12px}.hero h1{font-size:40px;line-height:1.1}.chip{padding:0 14px;min-height:44px;border:1px solid var(--bd);border-radius:12px;background:var(--card);color:var(--tx);font:inherit;cursor:pointer}.chip.on{border-color:var(--ac);color:var(--ac);font-weight:600}
+</style></head><body>
+<main id="m"></main><nav id="nav"></nav><div id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s),KEY="vestora-v1";
+let S={goals:[],cur:"ZAR",theme:"dark"},V={v:"home",f:"all",s:"upd",r:0,cf:null,id:null,sim:{p:0,c:1000,r:7,y:10,t:0},cmp:{p:0,c:1000,y:20,r:[3,7,10]}},CH=null;
+try{Object.assign(S,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){}
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const SYM={ZAR:"R",USD:"$",EUR:"€",GBP:"£",AUD:"A$",CAD:"C$"};
+const money=n=>{n=isFinite(n)?n:0;return(n<0?"−":"")+SYM[S.cur]+Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ab=v=>v>=1e6?(v/1e6).toFixed(1)+"M":v>=1e3?Math.round(v/1e3)+"k":String(Math.round(v));
+const num=id=>{const v=$("#"+id).value;return v===""?NaN:+v};
+const addM=m=>{const d=new Date();d.setMonth(d.getMonth()+m);return d.toLocaleDateString("en-US",{month:"long",year:"numeric"})};
+const mTo=d=>{const t=new Date(),x=new Date(d);return(x.getFullYear()-t.getFullYear())*12+x.getMonth()-t.getMonth()};
+const iso=()=>new Date().toISOString().slice(0,10);
+const DIS="Vestora provides hypothetical financial projections for educational and planning purposes. Projections are not guarantees of investment performance or financial advice. Model: effective annual return converted to a monthly rate, monthly compounding, contributions at month end, no fees or taxes.";
+
+/* ---- Calculation engine (deterministic, no UI) ---- */
+const E={
+ mr:a=>Math.pow(1+a/100,1/12)-1,
+ sim(p,c,inc,ret,n,t){const r=E.mr(ret),rows=[];let b=p,cc=0,k=c,hit=t>0&&p>=t?0:null;
+  for(let m=1;m<=n;m++){if(m>1&&(m-1)%12===0)k*=1+inc/100;b=b*(1+r)+k;cc+=k;rows.push({m,b,cc});if(hit===null&&t>0&&b>=t)hit=m}
+  return{rows,hit}},
+ req(p,t,ret,n){if(n<=0)return null;if(p>=t)return 0;const r=E.mr(ret),f=Math.pow(1+r,n);return Math.max(0,r===0?(t-p)/n:(t-p*f)*r/(f-1))},
+ real:(v,i,m)=>v/Math.pow(1+i/100,m/12)
+};
+(()=>{const t=(n,a,b)=>console.assert(Math.abs(a-b)<.01,"FAIL "+n,a,b);
+ t("zero return",E.sim(1e4,1e3,0,0,12,0).rows[11].b,22000);t("no contrib",E.sim(1e4,0,0,0,12,0).rows[11].b,1e4);
+ t("negative",E.sim(1e4,0,0,-10,12,0).rows[11].b,9000);t("required",E.req(0,12000,0,12),1000);
+ t("growth",E.sim(1e4,1e3,0,12,12,0).rows[11].b>22000?1:0,1);t("unreachable",E.sim(0,0,0,7,720,1e6).hit===null?1:0,1)})();
+
+const G=g=>{const p=g.bal+(g.lump||0),s=E.sim(p,g.mc,g.inc||0,g.ret,720,g.t);return{p,rows:s.rows,hit:s.hit,pct:Math.min(100,g.bal/g.t*100),done:g.bal>=g.t}};
+const hor=c=>c.hit?Math.max(c.hit,12):120;
+const MS=(g,c)=>[10,25,50,75,100].map(q=>{const a=g.t*q/100,i=c.rows.findIndex(r=>r.b>=a),ok=g.bal>=a;return{q,a,ok,when:ok||i<0?null:i+1}});
+const pts=(p,rows)=>[{m:0,b:p,cc:0}].concat(rows);
+
+function chart(ser,t,lab){
+ const W=340,H=180,L=34,n=Math.max(...ser.map(s=>s.rows.length));
+ const mx=Math.max(t||0,...ser.flatMap(s=>s.rows.map(r=>r.b)),1),X=i=>L+(W-L-6)*i/Math.max(n-1,1),Y=v=>H-20-(H-32)*Math.max(v,0)/mx;
+ const yl=(n-1)/12,xl=yl>=1?Math.round(yl*10)/10+"y":(n-1)+"mo";CH={ser,n,W,L};
+ const tx=(x,y,a,s)=>`<text x="${x}" y="${y}" text-anchor="${a}" fill="var(--tx2)" font-size="10">${s}</text>`;
+ return`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(lab)}">${tx(2,12,"start",ab(mx))}${tx(2,H-20,"start","0")}${tx(L,H-4,"start","Now")}${tx(W-6,H-4,"end","+"+xl)}`+
+ (t>0?`<line x1="${L}" x2="${W-6}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--warn)" stroke-dasharray="4 4"/>`:"")+
+ ser.map(s=>`<path d="M${s.rows.map((r,i)=>X(i).toFixed(1)+" "+Y(r.b).toFixed(1)).join("L")}" fill="none" stroke="${s.col}" stroke-width="2.5" stroke-linejoin="round"/>`).join("")+
+ `</svg>`+(ser.length>1?`<div class="row mut">${ser.map(s=>`<span><b style="color:${s.col}">━</b> ${s.name}</span>`).join("")}</div>`:"")+
+ `<div class="mut" id="tip" aria-live="polite">${t>0?"Dashed line = target. ":""}Hover or tap the chart for values. Hypothetical projection, not past performance.</div>`}
+const tipf=e=>{const s=e.target.closest&&e.target.closest(".chart");if(!s||!CH)return;const r=s.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*CH.W,i=Math.max(0,Math.min(CH.n-1,Math.round((x-CH.L)/(CH.W-CH.L-6)*(CH.n-1))));
+ $("#tip").textContent="Month "+i+" · "+CH.ser.map(s=>(s.name?s.name+": ":"")+money(s.rows[Math.min(i,s.rows.length-1)].b)).join(" · ")};
+document.addEventListener("pointermove",tipf);document.addEventListener("pointerdown",tipf);
+
+const wb=(a,b,c)=>{const t=a+b+Math.max(c,0)||1;return`<div class="bar" style="height:12px"><i style="width:${a/t*100}%;background:var(--c2)"></i><i style="width:${b/t*100}%;background:var(--c3)"></i><i style="width:${Math.max(c,0)/t*100}%"></i></div>
+<div class="line"><span><b style="color:var(--c2)">■</b> Starting capital</span><b>${money(a)}</b></div><div class="line"><span><b style="color:var(--c3)">■</b> Contributions</span><b>${money(b)}</b></div><div class="line"><span><b style="color:var(--ac)">■</b> Hypothetical growth</span><b>${money(c)}</b></div><div class="line"><span>Projected final value</span><b>${money(a+b+c)}</b></div>`};
+const inp=(id,l,v,ex="")=>`<label for="${id}">${l}</label><input id="${id}" type="number" inputmode="decimal" step="any" value="${v}" ${ex}>`;
+const retWarn=r=>r>15?"This return assumption is unusually high.":r<0?"This return assumption is negative.":"";
+const LOCAL=`<p class="mut">Guest mode · your data is stored only in this browser.</p>`;
+const INFO={about:["About","Vestora is a financial planning and educational simulation tool. It is not a bank, broker or financial adviser."],privacy:["Privacy Policy","Your goals and settings are stored only in this browser. Nothing is sent to a server or to analytics. You can erase everything in Settings."],terms:["Terms","Vestora is provided as is for educational use. Projections are hypothetical, and you are responsible for your own financial decisions."],disc:["Financial Disclaimer",DIS],contact:["Contact","No contact channel is set up in this version."]};
+const foot=()=>`<div class="row" style="margin-top:16px">${Object.keys(INFO).map(k=>`<button class="chip" data-a="info" data-k="${k}">${INFO[k][0]}</button>`).join("")}</div><p class="mut">© 2026 Vestora</p>`;
+const CATS=["Savings","Investment","Property","Vehicle","Travel","Business","Education","Retirement","Financial independence","Custom"];
+const ic=d=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const NAV=[["home","Home",'<path d="M3 11l9-8 9 8v10H3z"/>'],["goals","Goals",'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/>'],["sim","Simulator",'<path d="M4 20V10M12 20V4M20 20v-7"/>'],["ins","Insights",'<path d="M4 20V4M4 20h16M8 16l4-5 3 3 5-7"/>'],["set","Settings",'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>']];
+
+const goalCard=g=>{const c=G(g),st=g.paused?"Paused":c.done?"Completed":"Active";
+ return`<div class="card"><div class="row sp"><b>${esc(g.name)}</b><span class="mut">${st}${g.pri?" · Primary":""}</span></div><div class="mut">${g.cat}</div>
+<div class="big">${money(g.t)}</div><div class="mut">Target · ${money(g.bal)} saved · ${Math.round(c.pct)}%</div>
+<div class="bar" role="progressbar" aria-valuenow="${Math.round(c.pct)}" aria-valuemin="0" aria-valuemax="100"><i style="width:${c.pct}%"></i></div>
+<p class="mut">${c.hit===null?"Not projected to be reached within 60 years under these assumptions.":c.hit===0?"Goal reached.":"Estimated goal date: <b>"+addM(c.hit)+"</b>"} · ${money(g.mc)}/month</p>
+<button class="btn p" data-a="open" data-id="${g.id}">View goal</button></div>`};
+const acts=g=>`<div class="row" style="margin:-4px 0 12px"><button class="btn" data-a="edit" data-id="${g.id}">Edit</button><button class="btn" data-a="pri" data-id="${g.id}">${g.pri?"Primary ✓":"Set as primary"}</button><button class="btn" data-a="pause" data-id="${g.id}">${g.paused?"Resume":"Pause"}</button><button class="btn d" data-a="del" data-id="${g.id}">${V.cf===g.id?"Tap again to confirm":"Delete"}</button></div>`;
+
+const VW={
+home(){const as=S.goals.filter(g=>!g.paused),g=as.find(x=>x.pri)||as[0],h=new Date().getHours();
+ let o=`<div class="mut"><b>Vestora</b> · Your future, quantified.</div><h1>Good ${h<12?"morning":h<18?"afternoon":"evening"}.</h1>${LOCAL}`;
+ if(!g)o+=`<div class="card"><h2>Every financial goal starts somewhere.</h2><p class="mut">You haven’t created your first financial goal yet. Create a goal to see how your money could grow.</p><button class="btn p" data-a="new">Create your first goal</button></div>`;
+ else{const c=G(g),m=MS(g,c).find(x=>!x.ok);
+  o+=`<div class="card"><b>Your financial goals</b><p class="mut">${as.length} active goal${as.length===1?"":"s"} · ${money(as.reduce((s,x)=>s+x.mc,0))} planned per month</p></div>`+goalCard(g)+
+  `<div class="card"><b>Projection preview</b>${chart([{rows:pts(c.p,c.rows.slice(0,hor(c))),col:"var(--ac)",name:""}],g.t,"Projected balance for "+g.name)}</div>`+
+  (m?`<div class="card"><b>Next milestone: ${money(m.a)}</b><p class="mut">${money(m.a-g.bal)} to go${m.when?" · estimated "+addM(m.when):""}</p></div>`:"");}
+ return o+`<div class="row"><button class="btn" data-a="new">Create a goal</button><button class="btn" data-v="sim">Open simulator</button><button class="btn" data-v="cmp">Compare scenarios</button></div>`},
+
+goals(){const f=V.f;let L=S.goals.filter(g=>f==="all"||(f==="active"&&!g.paused&&g.bal<g.t)||(f==="paused"&&g.paused)||(f==="completed"&&g.bal>=g.t));
+ const so={upd:(a,b)=>b.u-a.u,tgt:(a,b)=>b.t-a.t,pro:(a,b)=>b.bal/b.t-a.bal/a.t,date:(a,b)=>(G(a).hit??1e9)-(G(b).hit??1e9)};L.sort(so[V.s]);
+ const op=(v,l,c)=>`<option value="${v}"${c===v?" selected":""}>${l}</option>`;
+ return`<div class="row sp"><h1>My Goals</h1><button class="btn p" data-a="new">+ Create Goal</button></div><p class="mut">Your financial goals, all in one place.</p>
+<div class="row"><div style="flex:1"><label for="filt">Show</label><select id="filt">${op("all","All goals",f)+op("active","Active",f)+op("completed","Completed",f)+op("paused","Paused",f)}</select></div><div style="flex:1"><label for="sort">Sort by</label><select id="sort">${op("upd","Recently updated",V.s)+op("tgt","Target amount",V.s)+op("date","Completion date",V.s)+op("pro","Progress",V.s)}</select></div></div><br>`+
+ (L.length?L.map(g=>goalCard(g)+acts(g)).join(""):`<div class="card"><p>You haven’t created any goals${S.goals.length?" matching this filter":""} yet.</p><button class="btn p" data-a="new">Create a goal</button></div>`)},
+
+form(){const g=S.goals.find(x=>x.id===V.id)||{name:"",cat:"Savings",t:"",bal:0,mc:0,lump:0,inc:0,ret:7,infl:"",date:""};
+ return`<h1>${V.id?"Edit goal":"Create goal"}</h1><div class="card"><label for="f-name">Goal name</label><input id="f-name" maxlength="60" value="${esc(g.name)}" placeholder="e.g. First R100,000">
+<label for="f-cat">Category</label><select id="f-cat">${CATS.map(c=>`<option${c===g.cat?" selected":""}>${c}</option>`).join("")}</select>
+${inp("f-t","Target amount",g.t)}${inp("f-bal","Current balance",g.bal)}${inp("f-mc","Monthly contribution",g.mc)}${inp("f-lump","Additional lump sum (optional)",g.lump||0)}${inp("f-inc","Annual contribution increase (%)",g.inc||0)}${inp("f-ret","Expected annual return (%): an assumption, not a prediction",g.ret)}${inp("f-infl","Inflation rate (%, optional)",g.infl||"")}
+<label for="f-date">Target date (optional)</label><input id="f-date" type="date" value="${g.date||""}"><div id="ferr" class="err" role="alert"></div>
+<div class="row" style="margin-top:12px"><button class="btn p" data-a="save">${V.id?"Save changes":"Create goal"}</button><button class="btn" data-a="cancel">Cancel</button></div></div>`},
+
+goal(){const g=S.goals.find(x=>x.id===V.id);if(!g)return`<p>Goal not found.</p><button class="btn" data-v="goals">Back</button>`;
+ const c=G(g),ms=MS(g,c),dm=g.date?mTo(g.date):0,H=Math.min(720,dm>0?dm:c.hit>0?c.hit:120),n=V.r?V.r*12:hor(c),r=c.rows[H-1],gr=r.b-c.p-r.cc,st=g.paused?"Paused":c.done?"Completed":"Active";
+ const x=E.sim(c.p,g.mc+500,g.inc||0,g.ret,720,g.t).hit;let ins="";
+ if(!c.done&&x!==null&&(c.hit===null||x<c.hit))ins=c.hit===null?`Adding ${money(500)} a month would make this goal reachable by ${addM(x)}.`:`Adding ${money(500)} a month would bring your goal forward by ${c.hit-x} month${c.hit-x===1?"":"s"}.`;
+ const rq=g.date?(dm<1?"Your target date is today or has passed. Increase your current balance or select a future date.":`To reach ${money(g.t)} by ${g.date}, you’d need about <b>${money(E.req(c.p,g.t,g.ret,dm))}</b> a month (flat contributions).`):"";
+ const w=retWarn(g.ret),M=(l,v)=>`<div class="card"><div class="mut">${l}</div><b style="font-size:20px">${v}</b></div>`;
+ return`<button class="btn" data-v="goals">← Goals</button><div class="row sp"><h1>${esc(g.name)}</h1><span class="mut">${g.cat} · ${st}</span></div>
+<div class="card"><div class="mut">Your target</div><div class="big">${money(g.t)}</div><div class="mut">${money(g.bal)} currently saved · ${Math.round(c.pct)}%</div><div class="bar" role="progressbar" aria-valuenow="${Math.round(c.pct)}" aria-valuemin="0" aria-valuemax="100"><i style="width:${c.pct}%"></i></div>
+<div class="mut" style="margin-top:12px">Estimated goal date</div><b style="font-size:20px">${c.hit===null?"Your goal is not projected to be reached within the current timeframe.":c.hit===0?"Goal reached":addM(c.hit)}</b>${rq?`<p class="mut">${rq}</p>`:""}${ins?`<p class="mut">${ins}</p>`:""}</div>
+<div class="grid">${M("Current balance",money(g.bal))}${M("Monthly contribution",money(g.mc))}${M("Projected value after "+H+" months",money(r.b)+(g.infl>0?`<div class="mut">≈ ${money(E.real(r.b,g.infl,H))} in today’s money</div>`:""))}${M("Remaining",c.done?"Goal exceeded":money(g.t-g.bal))}</div>
+<div class="card"><div class="row sp"><b>Projection</b><div class="row">${[1,5,10,0].map(y=>`<button class="btn${V.r===y?" p":""}" data-a="rng" data-r="${y}" style="padding:0 12px">${y?y+"Y":"ALL"}</button>`).join("")}</div></div>${chart([{rows:pts(c.p,c.rows.slice(0,n)),col:"var(--ac)",name:""}],g.t,"Projected balance for "+g.name)}</div>
+<div class="card"><b>Wealth breakdown (after ${H} months)</b>${wb(c.p,r.cc,gr)}</div>
+<div class="card"><b>Milestones</b>${ms.map(m=>`<div class="line"><span>${m.q}% · ${money(m.a)}</span><span class="mut">${m.ok?"Achieved":(m.when?"Est. "+addM(m.when)+" · ":"Not projected · ")+money(m.a-g.bal)+" to go"}</span></div>`).join("")}</div>
+<div class="card"><b>Assumptions</b>${w?`<div class="warn">${w}</div>`:""}<div class="line"><span>Annual return</span><b>${g.ret}%</b></div><div class="line"><span>Inflation</span><b>${g.infl||0}%</b></div><div class="line"><span>Annual contribution increase</span><b>${g.inc||0}%</b></div><div class="line"><span>Lump sum</span><b>${money(g.lump||0)}</b></div><div class="line"><span>Contributions</span><b>Monthly, at month end</b></div>${g.date?`<div class="line"><span>Target date</span><b>${esc(g.date)}</b></div>`:""}</div>
+<div class="card"><b>Add contribution</b><p class="mut">Manually updates your balance. Not a bank transaction.</p>${inp("k-a","Amount","")}<label for="k-d">Date</label><input id="k-d" type="date" value="${iso()}"><label for="k-n">Description (optional)</label><input id="k-n" maxlength="60"><div id="kerr" class="err" role="alert"></div><button class="btn p" style="margin-top:12px" data-a="add">Add contribution</button></div>
+<div class="card"><b>Contribution history</b>${g.hist.length?g.hist.slice().reverse().map(h=>`<div class="line"><span>${esc(h.d)} · ${esc(h.n||"Contribution")}</span><span><b>${money(h.a)}</b> <button class="btn d" style="min-height:36px;padding:0 10px" data-a="cdel" data-h="${h.id}">Delete</button></span></div>`).join(""):`<p class="mut">No contributions have been recorded yet.</p>`}</div>
+<div class="row"><button class="btn" data-a="edit" data-id="${g.id}">Edit Goal</button><button class="btn" data-a="simgo">Simulate</button><button class="btn" data-a="cmpgo">Compare Scenarios</button><button class="btn" data-a="pause" data-id="${g.id}">${g.paused?"Resume":"Pause"} Goal</button><button class="btn d" data-a="del" data-id="${g.id}">${V.cf===g.id?"Tap again to confirm":"Delete Goal"}</button></div>`},
+
+sim(){const s=V.sim;return`<h1>Simulator</h1><p class="mut">Explore scenarios. Nothing here changes your saved goals.</p><div class="two"><div class="card">${inp("s-p","Starting capital",s.p)}${inp("s-c","Monthly contribution",s.c)}${inp("s-r","Annual return (%)",s.r,'step="0.5"')}<input id="s-rr" type="range" min="-50" max="100" step="0.5" value="${s.r}" aria-label="Annual return slider">${inp("s-y","Time horizon (years)",s.y)}${inp("s-t","Target amount (optional)",s.t||"")}<div class="row" style="margin-top:12px"><button class="btn" data-a="reset">Reset simulator</button></div></div><div id="simOut"></div></div>`},
+
+cmp(){const c=V.cmp,N=["Conservative","Moderate","Optimistic"];return`<h1>Compare scenarios</h1><p class="mut">Same money, three example return assumptions. They are not forecasts.</p><div class="two"><div class="card">${inp("c-p","Starting capital",c.p)}${inp("c-c","Monthly contribution",c.c)}${inp("c-y","Time horizon (years)",c.y)}${N.map((n,i)=>inp("c-r"+i,n+" return (%)",c.r[i])).join("")}</div><div id="cmpOut"></div></div>`},
+
+land(){const s=E.sim(10000,2000,0,7,720,250000),h=s.hit;
+return`<div class="hero"><b>Vestora</b><h1>Your future, quantified.</h1><p class="mut" style="font-size:16px">Turn your financial goals into a clear path. See what it takes, explore your possibilities, and visualize how your money could grow.</p><div class="row"><button class="btn p" data-a="start">Start planning</button><button class="btn" data-a="try">Explore the simulator</button></div></div>
+<div class="card"><span class="mut">Example projection · sample data</span><div class="big">${money(250000)}</div><div class="mut">Sample target · ${money(10000)} start · ${money(2000)}/month · 7% assumed · est. ${addM(h)}</div>${chart([{rows:pts(10000,s.rows.slice(0,h)),col:"var(--ac)",name:""}],250000,"Sample projection")}</div>
+<div class="grid">${[["Plan your goals","Set targets that matter to you, from an emergency fund to financial independence."],["Simulate your future","Change contributions, returns and time, and watch the result update instantly."],["Compare scenarios","See how conservative, moderate and optimistic assumptions differ."],["Track your progress","Follow milestones and update your balance as you save."]].map(x=>`<div class="card"><b>${x[0]}</b><p class="mut">${x[1]}</p></div>`).join("")}</div>
+<h2>How it works</h2><div class="grid">${["Set your goal","Enter your financial details","Explore your projected future"].map((x,i)=>`<div class="card"><span class="mut">Step ${i+1}</span><br><b>${x}</b></div>`).join("")}</div>`},
+
+onb(){const o=V.o||0;let b;
+if(o===0)b=`<h1>Build a clearer picture of your financial future.</h1><p class="mut">Create a goal and discover what it could take to achieve it.</p><button class="btn p" data-a="onx">Get started</button>`;
+else if(o===1)b=`<h2>What are you planning for?</h2><div class="row">${["Savings","Investing","Property","Car","Travel","Business","Retirement","Financial independence","Other"].map(c=>`<button class="chip${(S.cats||[]).includes(c)?" on":""}" data-a="cat" data-k="${c}">${c}</button>`).join("")}</div><br><button class="btn p" data-a="onx">Continue</button>`;
+else if(o===2)b=`<h2>Preferred currency</h2><label for="set-cur">Currency</label><select id="set-cur">${Object.keys(SYM).map(k=>`<option${k===S.cur?" selected":""}>${k}</option>`).join("")}</select><p class="mut">This only changes how amounts are displayed. No conversion happens.</p><button class="btn p" data-a="onx">Continue</button>`;
+else b=`<h2>Create your first goal</h2><p class="mut">It takes about a minute.</p><button class="btn p" data-a="ongoal">Create my first goal</button>`;
+return`<div class="mut">Step ${o+1} of 4</div>`+b+`<div class="row" style="margin-top:12px"><button class="btn" data-a="skip">Skip</button></div>`},
+
+info(){const i=INFO[V.k];return`<h1>${i[0]}</h1><p>${i[1]}</p><button class="btn" data-a="back">Back</button>`},
+
+ins(){const as=S.goals.filter(g=>!g.paused);
+if(!as.length)return`<h1>Insights</h1><div class="card"><p>Create a financial goal to unlock your insights.</p><button class="btn p" data-a="new">Create a goal</button></div>`;
+const T=as.map(g=>({g,c:G(g)})),mc=as.reduce((s,g)=>s+g.mc,0);
+return`<h1>Insights</h1><div class="grid"><div class="card"><div class="mut">Active goals</div><b class="big">${as.length}</b></div><div class="card"><div class="mut">Planned per month</div><b style="font-size:22px">${money(mc)}</b></div><div class="card"><div class="mut">Planned per year</div><b style="font-size:22px">${money(mc*12)}</b></div></div>`+
+`<div class="card"><b>Goal timeline</b>${T.slice().sort((a,b)=>(a.c.hit??1e9)-(b.c.hit??1e9)).map(({g,c})=>`<div class="line"><span>${esc(g.name)}<div class="mut">${Math.round(c.pct)}% · target ${g.date?esc(g.date):"none set"}</div></span><b>${c.hit===null?"Not projected":c.hit===0?"Reached":addM(c.hit)}</b></div>`).join("")}</div>`+
+T.map(({g,c})=>{const H=Math.min(720,c.hit>0?c.hit:120),r=c.rows[H-1],gr=r.b-c.p-r.cc,x=E.sim(c.p,g.mc+500,g.inc||0,g.ret,720,g.t).hit,L=[];
+L.push(c.hit===null?"This goal is not projected to be reached under the current assumptions.":c.hit===0?"This goal is already reached.":"Your goal is currently projected to be reached in "+addM(c.hit)+".");
+if(gr>0&&r.b>0)L.push("Hypothetical growth is about "+Math.round(gr/r.b*100)+"% of the projected value after "+H+" months.");
+if(!c.done&&x!==null&&(c.hit===null||x<c.hit))L.push(c.hit===null?"Adding "+money(500)+" a month would make it reachable by "+addM(x)+".":"Adding "+money(500)+" a month would bring it forward by "+(c.hit-x)+" month"+(c.hit-x===1?"":"s")+".");
+return`<div class="card"><b>${esc(g.name)}</b>${L.map(t=>`<p class="mut">${t}</p>`).join("")}</div>`}).join("")},
+
+set(){const op=(v,l,c)=>`<option value="${v}"${c===v?" selected":""}>${l}</option>`;
+ return`<h1>Settings</h1>${LOCAL}<div class="card"><label for="set-cur">Currency</label><select id="set-cur">${Object.keys(SYM).map(k=>op(k,k,S.cur)).join("")}</select><p class="mut">Changing currency changes how amounts are displayed. It will not convert your existing financial values using an exchange rate.</p>
+<label for="set-th">Theme</label><select id="set-th">${op("dark","Dark",S.theme)+op("light","Light",S.theme)+op("system","System",S.theme)}</select></div>
+<div class="card"><b>Your data</b><p class="mut">Goals are saved in this browser only. Accounts and cross-device sync need a Supabase connection, which is not configured here.</p><button class="btn d" data-a="clear">${V.cf==="clr"?"Tap again to delete all goals":"Clear local data"}</button></div>`}
+};
+
+function simOut(){const s=V.sim,o=$("#simOut"),e=[];
+ if(!(s.p>=0))e.push("Starting capital cannot be negative.");if(!(s.c>=0))e.push("Your monthly contribution cannot be negative.");
+ if(!(s.r>=-50&&s.r<=100))e.push("Return must be between −50% and 100%.");if(!(s.y>=1&&s.y<=60))e.push("Choose a horizon between 1 and 60 years.");
+ if(e.length){o.innerHTML=`<div class="card err" role="alert">${e.join("<br>")}</div>`;return}
+ const n=Math.round(s.y*12),q=E.sim(s.p,s.c,0,s.r,720,s.t),rows=q.rows.slice(0,n),l=rows[n-1],w=retWarn(s.r);
+ const tg=s.t>0?(q.hit===0?"Already achieved.":q.hit!==null&&q.hit<=n?"Target reached around "+addM(q.hit)+".":q.hit!==null?"Not reached within this horizon; reached around "+addM(q.hit)+".":"Your goal is not projected to be reached under these assumptions."):"";
+ o.innerHTML=`<div class="card"><div class="mut">Projected final value</div><div class="big">${money(l.b)}</div>${s.infl?"":""}<p class="mut">Inflation-adjusted values estimate what future money may be worth in today’s purchasing power.</p>${w?`<div class="warn">${w}</div>`:""}${tg?`<p><b>${tg}</b></p>`:""}</div>
+<div class="card">${chart([{rows:pts(s.p,rows),col:"var(--ac)",name:""}],s.t,"Simulated balance over "+s.y+" years")}</div><div class="card"><b>Wealth breakdown</b>${wb(s.p,l.cc,l.b-s.p-l.cc)}</div>`}
+
+function cmpOut(){const c=V.cmp,o=$("#cmpOut"),e=[];
+ if(!(c.p>=0&&c.c>=0))e.push("Starting capital and contributions cannot be negative.");if(!(c.y>=1&&c.y<=60))e.push("Choose a horizon between 1 and 60 years.");if(c.r.some(r=>!(r>=-50&&r<=100)))e.push("Returns must be between −50% and 100%.");
+ if(e.length){o.innerHTML=`<div class="card err" role="alert">${e.join("<br>")}</div>`;return}
+ const n=Math.round(c.y*12),N=["Conservative","Moderate","Optimistic"],K=["var(--ac)","var(--c2)","var(--c3)"],R=c.r.map(r=>E.sim(c.p,c.c,0,r,720,0).rows.slice(0,n)),F=R.map(r=>r[n-1].b),d=F[2]-F[0];
+ o.innerHTML=`<div class="card">${chart(R.map((r,i)=>({rows:pts(c.p,r),col:K[i],name:N[i]+" "+c.r[i]+"%"})),0,"Three projected balances over "+c.y+" years")}</div>`+
+ R.map((r,i)=>`<div class="card"><b style="color:${K[i]}">${N[i]} · ${c.r[i]}%</b><div class="line"><span>Final projected value</span><b>${money(F[i])}</b></div><div class="line"><span>Total contributions</span><b>${money(r[n-1].cc)}</b></div><div class="line"><span>Estimated growth</span><b>${money(F[i]-c.p-r[n-1].cc)}</b></div></div>`).join("")+
+ `<div class="card">Under the selected assumptions, the optimistic scenario results in approximately <b>${money(Math.abs(d))}</b> ${d>=0?"more":"less"} than the conservative scenario after ${c.y} years.</div>`}
+
+function R(){const w=V.v==="goal"||V.v==="form"?"goals":V.v==="cmp"?"sim":V.v;document.body.className=V.v==="land"||V.v==="onb"?"bare":"";
+ $("#m").innerHTML=VW[V.v]()+`<p class="mut" style="margin-top:24px">${DIS}</p>`+foot();
+ $("#nav").innerHTML=`<b class="logo">Vestora</b>`+NAV.map(([k,l,i])=>`<button data-v="${k}" class="${k===w?"on":""}">${ic(i)}${l}</button>`).join("");
+ if(V.v==="sim")simOut();if(V.v==="cmp")cmpOut()}
+function toast(t){const e=$("#toast");e.textContent=t;e.style.opacity=1;clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.opacity=0,2200)}
+function theme(){const r=document.documentElement;S.theme==="system"?r.removeAttribute("data-theme"):r.setAttribute("data-theme",S.theme)}
+
+document.addEventListener("click",e=>{const b=e.target.closest("[data-a],[data-v]");if(!b)return;
+ if(b.dataset.v){V.v=b.dataset.v;V.cf=null;return R()}
+ const a=b.dataset.a,id=b.dataset.id,g=S.goals.find(x=>x.id===(id||V.id));
+ switch(a){
+ case"start":V.v="onb";V.o=0;break;
+ case"try":S.seen=true;persist();V.v="sim";break;
+ case"onx":V.o=(V.o||0)+1;break;
+ case"cat":{const k=b.dataset.k,c=S.cats||[];S.cats=c.includes(k)?c.filter(x=>x!==k):c.concat(k);persist();break}
+ case"ongoal":S.seen=true;persist();V.v="form";V.id=null;break;
+ case"skip":S.seen=true;persist();V.v="home";break;
+ case"info":V.back=V.v==="info"?V.back:V.v;V.v="info";V.k=b.dataset.k;break;
+ case"back":V.v=V.back||"home";break;
+ case"new":V.v="form";V.id=null;break;
+ case"open":V.v="goal";V.id=id;V.r=0;V.cf=null;break;
+ case"edit":V.v="form";V.id=id;break;
+ case"cancel":V.v=V.id?"goal":"goals";break;
+ case"pri":S.goals.forEach(x=>x.pri=x.id===id);persist();toast("Primary goal updated.");break;
+ case"pause":g.paused=!g.paused;g.u=Date.now();persist();break;
+ case"del":if(V.cf!==id){V.cf=id;break}
+  S.goals=S.goals.filter(x=>x.id!==id);if(S.goals.length&&!S.goals.some(x=>x.pri))S.goals[0].pri=true;V.cf=null;if(V.v==="goal")V.v="goals";persist();toast("Goal deleted.");break;
+ case"rng":V.r=+b.dataset.r;break;
+ case"add":{const k=num("k-a");if(!(k>0)){$("#kerr").textContent="Enter an amount greater than zero.";return}
+  g.hist.push({id:Date.now().toString(36),a:k,d:$("#k-d").value||iso(),n:$("#k-n").value.trim()});g.bal+=k;g.u=Date.now();persist();toast("Contribution added.");break}
+ case"cdel":{const h=g.hist.find(x=>x.id===b.dataset.h);g.hist=g.hist.filter(x=>x!==h);g.bal=Math.max(0,g.bal-h.a);persist();break}
+ case"simgo":{const c=G(g);V.sim={p:c.p,c:g.mc,r:g.ret,y:Math.min(60,Math.max(1,Math.ceil(hor(c)/12))),t:g.t};V.v="sim";break}
+ case"cmpgo":{const c=G(g);V.cmp={...V.cmp,p:c.p,c:g.mc,y:Math.min(60,Math.max(1,Math.ceil(hor(c)/12)))};V.v="cmp";break}
+ case"reset":V.sim={p:0,c:1000,r:7,y:10,t:0};break;
+ case"clear":if(V.cf!=="clr"){V.cf="clr";break}S.goals=[];V.cf=null;persist();toast("Local data cleared.");break;
+ case"save":{const o={name:$("#f-name").value.trim(),cat:$("#f-cat").value,t:num("f-t"),bal:num("f-bal"),mc:num("f-mc"),lump:num("f-lump")||0,inc:num("f-inc")||0,ret:num("f-ret"),infl:num("f-infl")||0,date:$("#f-date").value},e=[];
+  if(!o.name)e.push("Enter a goal name.");if(!(o.t>0))e.push("Enter a target amount greater than zero.");if(!(o.bal>=0))e.push("Enter a current balance of 0 or more.");
+  if(!(o.mc>=0))e.push("Your monthly contribution cannot be negative.");if(o.lump<0||o.inc<0||o.infl<0)e.push("Lump sum, increase and inflation cannot be negative.");
+  if(!(o.ret>=-50&&o.ret<=100))e.push("Return must be between −50% and 100%.");if(o.date&&mTo(o.date)<1)e.push("Choose a future target date (next month or later).");
+  if(e.length){$("#ferr").innerHTML=e.join("<br>");return}
+  let t=S.goals.find(x=>x.id===V.id);if(t)Object.assign(t,o,{u:Date.now()});else{t={id:Date.now().toString(36),...o,pri:!S.goals.length,paused:false,hist:[],u:Date.now()};S.goals.push(t)}
+  persist();V.id=t.id;V.v="goal";V.r=0;toast(V.id&&t?"Your goal has been saved.":"Goal created.");break}
+ }
+ R()});
+document.addEventListener("input",e=>{const id=e.target.id||"";
+ if(id==="s-rr")$("#s-r").value=e.target.value;if(id==="s-r")$("#s-rr").value=e.target.value;
+ if(id.slice(0,2)==="s-"){V.sim={p:num("s-p")||0,c:num("s-c")||0,r:num("s-r"),y:num("s-y"),t:num("s-t")||0};simOut()}
+ if(id.slice(0,2)==="c-"){V.cmp={p:num("c-p")||0,c:num("c-c")||0,y:num("c-y"),r:[num("c-r0"),num("c-r1"),num("c-r2")]};cmpOut()}});
+document.addEventListener("change",e=>{const id=e.target.id,v=e.target.value;
+ if(id==="filt"){V.f=v;R()}if(id==="sort"){V.s=v;R()}if(id==="set-cur"){S.cur=v;persist();R();toast("Currency display updated.")}if(id==="set-th"){S.theme=v;persist();theme()}});
+if(!S.seen)V.v="land";theme();R();
+</script><script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
+</body></html>
